@@ -1,4 +1,4 @@
-from tkinter import Tk, Frame, Label, Button, ttk
+from tkinter import StringVar, Tk, Frame, Label, Button, ttk
 from PIL import Image, ImageTk, ImageFilter
 import subprocess
 
@@ -8,6 +8,14 @@ class Register:
         self.root = root
         self.root.title("Register")
         self.root.geometry("1600x900+0+0")
+
+        ## variables
+        self.var_username=StringVar()
+        self.var_email=StringVar()
+        self.var_pswd=StringVar()
+        self.var_confirm_pswd=StringVar()
+
+        
 
         # Open and blur the background image
         original_image = Image.open(r"C:\Users\deeks\OneDrive\Pictures\Saved Pictures\architecture-building-chairs-2034335.jpg")
@@ -27,37 +35,43 @@ class Register:
         username = Label(frame, text="Username", font=("times new roman", 15, "bold"), bg="white")
         username.place(x=50, y=105)
 
-        self.username_entry = ttk.Entry(frame, font=("times new roman", 15, "bold"))
+        self.username_entry = ttk.Entry(frame, textvariable=self.var_username,font=("times new roman", 15, "bold"))
         self.username_entry.place(x=50, y=130, width=250)
 
         # Email
         email = Label(frame, text="Email", font=("times new roman", 15, "bold"), bg="white", fg="black")
         email.place(x=50, y=185)
 
-        self.txt_email = ttk.Entry(frame, font=("times new roman", 15))
+        self.txt_email = ttk.Entry(frame, textvariable=self.var_email, font=("times new roman", 15))
         self.txt_email.place(x=50, y=210, width=250)
 
         # Password
         pswd = Label(frame, text="Password", font=("times new roman", 15, "bold"), bg="white", fg="black")
         pswd.place(x=50, y=265)
 
-        self.txt_pswd = ttk.Entry(frame, font=("times new roman", 15), show="*")
+        self.txt_pswd = ttk.Entry(frame, textvariable=self.var_pswd, font=("times new roman", 15), show="*")
         self.txt_pswd.place(x=50, y=290, width=250)
 
         # Confirm Password
         confirm_pswd = Label(frame, text="Confirm Password", font=("times new roman", 15, "bold"), bg="white", fg="black")
         confirm_pswd.place(x=50, y=345)
 
-        self.txt_confirm_pswd = ttk.Entry(frame, font=("times new roman", 15), show="*")
+        self.txt_confirm_pswd = ttk.Entry(frame, textvariable=self.var_confirm_pswd, font=("times new roman", 15), show="*")
         self.txt_confirm_pswd.place(x=50, y=370, width=250)
 
+
+        
         # Sign Up Button
         signup_btn = Button(frame, text="Sign Up", font=("times new roman", 15, "bold"), bg="green", fg="white", cursor="hand2", command=self.sign_up)
-        signup_btn.place(x=150, y=450, width=200)
+        signup_btn.place(x=150, y=420, width=200)
+
+        lbl = Label(frame, text="Already have an account?", font=("times new roman", 14, "bold"), bg="white", fg="blue")
+        lbl.place(x=40, y=500)
+
 
         # Login Redirect (Add this part)
-        login_btn = Button(self.root, text="Already have an account? Login", font=("times new roman", 15, "bold"), fg="blue", bg="white", command=self.go_to_login)
-        login_btn.place(x=650, y=680)
+        login_btn = Button(frame, text=" Login", font=("times new roman", 15, "bold"), fg="blue", bg="white", command=self.go_to_login)
+        login_btn.place(x=270, y=500)
 
     def sign_up(self):
         # For now, you can validate fields and save data here (e.g., to a database).
@@ -68,6 +82,9 @@ class Register:
     def go_to_login(self):
         self.root.destroy()
         subprocess.run(["python", "login.py"])  # Open login.py
+
+        #### Function declaration###
+
 
 
 if __name__ == "__main__":

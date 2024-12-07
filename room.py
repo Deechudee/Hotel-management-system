@@ -10,19 +10,21 @@ class Roombooking:
         self.root.title("Hotel Management System")
         self.root.geometry("1295x550+230+220")
 
-        lbl_title = Label(self.root, text="Room Booking Details",font=("times new roman",40,"bold"), bg="black", fg="lightblue",bd=4,relief=RIDGE)
-        lbl_title.place(x=100, y=140, width=1295, height=50)
+        lbl_title = Label(self.root, text="Room Booking Details",font=("times new roman",40,"bold"), bg="black", fg="red",bd=4,relief=RIDGE)
+        lbl_title.place(x=0, y=0, width=1295, height=50)
 
-        
-        img2 = Image.open(r"C:\Users\deeks\OneDrive\Pictures\Saved Pictures\WhatsApp Image 2024-11-28 at 12.11.18 PM (1).jpeg")
-        img2 = img2.resize((230, 140), Image.LANCZOS)
+        img2 = Image.open(r"C:\Hotel Management System\assets\hotel2.jpg")
+        img2 = img2.resize((100, 40), Image.LANCZOS)
         self.photoimg2 = ImageTk.PhotoImage(img2)
 
         lblimg = Label(self.root, image=self.photoimg2, bd=4, relief=RIDGE)
-        lblimg.place(x=0, y=0, width=1550, height=140)
+        lblimg.place(x=5, y=2, width=100, height=40)
 
+        
+       
+        
         lblframeleft = LabelFrame(self.root,bd=2,relief=RIDGE, text="Room booking Details",font=("arial",12,"bold"),padx=2 )
-        lblframeleft.place(x=0, y=220, width=425, height=490)
+        lblframeleft.place(x=5, y=50, width=425, height=490)
 
         lbl_cust_contact= Label(lblframeleft, text="Customer Contact",font=("arial",12,"bold"), padx=2,pady=6)
         lbl_cust_contact.grid(row=0,column=0,sticky=W)
@@ -115,9 +117,43 @@ class Roombooking:
         btnReset=Button(btn_frame,text="Reset",font=("arial",11,"bold"),bg="black",fg="gold",width=10)
         btnReset.grid(row=0,column=3,padx=1)
 
-        # tabel frame search system
-        
+        ##RiRight 
+        img3 = Image.open(r"C:\Hotel Management System\assets\room.jpg")
+        img3 = img3.resize((520, 220), Image.LANCZOS)
+        self.photoimg3 = ImageTk.PhotoImage(img3)
 
+        lblimg = Label(self.root, image=self.photoimg3, bd=4, relief=RIDGE)
+        lblimg.place(x=760, y=55, width=520, height=220)
+
+
+        # tabel frame search system
+        Table_Frame=LabelFrame(self.root,bd=2,relief=RIDGE, text="View Details and Search System",font=("arial",12,"bold"), padx=2,pady=6)
+        Table_Frame.place(x=435,y=280,width=860,height=260)
+
+        lblSearchBy=Label(Table_Frame,font=("arial",12,"bold"),text="Search by:",bg="red",fg="white")
+        lblSearchBy.grid(row=0,column=0,sticky=W,padx=2)
+
+        self.search_var=StringVar()
+        combo_Search=ttk.Combobox(Table_Frame, textvariable=self.search_var,font=("arial", 12, "bold"), width=24, state="readonly")
+        combo_Search["values"] = ("Contact", "Room")
+        combo_Search.current(0)
+        combo_Search.grid(row=0, column=1,padx=2)
+
+        self.txt_search=StringVar()
+        txtSearch=ttk.Entry(Table_Frame, textvariable=self.txt_search,font=("arial", 13, "bold"), width=24)
+        txtSearch.grid(row=0, column=2,padx=2)
+
+        btnSearch=Button(Table_Frame, text="Search",font=("arial", 11, "bold"), bg="black",fg="gold",width=10)
+        btnSearch.grid(row=0, column=3,padx=1)
+
+        btnShowAll=Button(Table_Frame, text="Show All",font=("arial", 11, "bold"),bg="black",fg="gold", width=10)
+        btnShowAll.grid(row=0, column=4,padx=1)
+
+
+
+                
+
+                                
 
 
 

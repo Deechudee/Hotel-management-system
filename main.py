@@ -7,7 +7,7 @@ class Login_Window:
     def __init__(self, root):
         self.root = root
         self.root.title("Login")
-        self.root.geometry("1650x800+0+0")
+        self.root.geometry("1750x800+0+0")
 
         # Open and blur the background image
         original_image = Image.open(r"C:\Users\deeks\OneDrive\Pictures\Saved Pictures\WhatsApp Image 2024-11-28 at 12.11.18 PM.jpeg")
@@ -83,7 +83,7 @@ class Register:
         bg_lbl.place(x=0, y=0, relwidth=1, relheight=1)
 
         frame = Frame(self.root, bg="white")
-        frame.place(x=20, y=100, width=500, height=550)
+        frame.place(x=500, y=100, width=500, height=550)
 
         register_lbl = Label(frame, text="Registration", font=("times new roman", 20, "bold"), bg="lightblue", fg="white")
         register_lbl.place(x=20, y=20)
