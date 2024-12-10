@@ -1,13 +1,32 @@
-from tkinter import BOTTOM, HORIZONTAL, RIDGE, RIGHT, VERTICAL, W, X, Y, Button, Entry, Frame, Tk, Label
+import random
+from tkinter import BOTH, BOTTOM, END, HORIZONTAL, RIDGE, RIGHT, VERTICAL, W, X, Y, Button, Entry, Frame, StringVar, Tk, Label
 from tkinter import ttk
 from tkinter.ttk import LabelFrame, Style
 from PIL import Image, ImageTk
+#import mysql.connector
+from tkinter import messagebox
 
 class CustomerWin:
     def __init__(self, root):
         self.root = root
         self.root.title("Hospital Management System")
         self.root.geometry("1295x550+230+220")
+
+        self.var_ref=StringVar()
+        x=random.randint(1000,10000)
+        self.var_ref.set(str(x))
+
+        self.var_cust_name=StringVar()
+        self.var_cust_mother=StringVar()
+        self.var_gender=StringVar()
+        self.var_post=StringVar()
+        self.var_mobile=StringVar()
+        self.var_email=StringVar()
+        self.var_nationality=StringVar()
+        self.var_address=StringVar()
+        self.var_id_proof=StringVar()
+        self.var_id_number=StringVar()
+        
 
         # Title Label
         lbl_title = Label(
@@ -48,45 +67,45 @@ class CustomerWin:
         lbl_cust_ref = Label(labelFrameLeft, text="Customer Ref", font=("times new roman", 12, "bold"), padx=2, pady=6)
         lbl_cust_ref.grid(row=0, column=0, sticky=W)
 
-        entry_ref = Entry(labelFrameLeft, width=29, font=("times new roman", 13, "bold"))
+        entry_ref = Entry(labelFrameLeft,textvariable=self.var_ref,state="readonly" ,width=29, font=("times new roman", 13, "bold"))
         entry_ref.grid(row=0, column=1, padx=10)
 
         cname = Label(labelFrameLeft, font=("arial", 12, "bold"), text="Customer Name:", padx=2, pady=6)
         cname.grid(row=1, column=0, sticky=W)
-        textcname = ttk.Entry(labelFrameLeft, font=("arial", 13, "bold"), width=29)
+        textcname = ttk.Entry(labelFrameLeft,textvariable=self.var_cust_name, font=("arial", 13, "bold"), width=29)
         textcname.grid(row=1, column=1)
 
         lblmname = Label(labelFrameLeft, font=("arial", 12, "bold"), text="Mother Name:", padx=2, pady=6)
         lblmname.grid(row=2, column=0, sticky=W)
-        txtmname = ttk.Entry(labelFrameLeft, font=("arial", 13, "bold"), width=29)
+        txtmname = ttk.Entry(labelFrameLeft,textvariable=self.var_cust_mother, font=("arial", 13, "bold"), width=29)
         txtmname.grid(row=2, column=1)
 
         label_gender = Label(labelFrameLeft, font=("arial", 12, "bold"), text="Gender:", padx=2, pady=6)
         label_gender.grid(row=3, column=0, sticky=W)
-        combo_gender = ttk.Combobox(labelFrameLeft, font=("arial", 12, "bold"), width=27, state="readonly")
+        combo_gender = ttk.Combobox(labelFrameLeft,textvariable=self.var_gender, font=("arial", 12, "bold"), width=27, state="readonly")
         combo_gender["value"] = ("Male", "Female", "Other")
         combo_gender.current(0)
         combo_gender.grid(row=3, column=1)
 
         lblPostCode = Label(labelFrameLeft, font=("arial", 12, "bold"), text="PostCode:", padx=2, pady=6)
         lblPostCode.grid(row=4, column=0, sticky=W)
-        txtPostCode = ttk.Entry(labelFrameLeft, font=("arial", 13, "bold"), width=29)
+        txtPostCode = ttk.Entry(labelFrameLeft, textvariable=self.var_post,font=("arial", 13, "bold"), width=29)
         txtPostCode.grid(row=4, column=1)
 
         lblMobile = Label(labelFrameLeft, font=("arial", 12, "bold"), text="Mobile:", padx=2, pady=6)
         lblMobile.grid(row=5, column=0, sticky=W)
-        txtMobile = ttk.Entry(labelFrameLeft, font=("arial", 13, "bold"), width=29)
+        txtMobile = ttk.Entry(labelFrameLeft, textvariable=self.var_mobile,font=("arial", 13, "bold"), width=29)
         txtMobile.grid(row=5, column=1)
 
         lblEmail = Label(labelFrameLeft, font=("arial", 12, "bold"), text="Email:", padx=2, pady=6)
         lblEmail.grid(row=6, column=0, sticky=W)
-        txtEmail = ttk.Entry(labelFrameLeft, font=("arial", 13, "bold"), width=29)
+        txtEmail = ttk.Entry(labelFrameLeft,textvariable=self.var_email, font=("arial", 13, "bold"), width=29)
         txtEmail.grid(row=6, column=1)
 
         lblNationality = Label(labelFrameLeft, font=("arial", 12, "bold"), text="Nationality:", padx=2, pady=6)
         lblNationality.grid(row=7, column=0, sticky=W)
 
-        combo_Nationality = ttk.Combobox(labelFrameLeft, font=("arial", 12, "bold"), width=27, state="readonly")
+        combo_Nationality = ttk.Combobox(labelFrameLeft,textvariable=self.var_nationality, font=("arial", 12, "bold"), width=27, state="readonly")
         combo_Nationality["value"] = ("British", "American", "Indian")
         combo_Nationality.current(0)
         combo_Nationality.grid(row=7, column=1)
@@ -94,35 +113,35 @@ class CustomerWin:
         lblIdProof = Label(labelFrameLeft, font=("arial", 12, "bold"), text="Id Proof Type:", padx=2, pady=6)
         lblIdProof.grid(row=8, column=0, sticky=W)
 
-        combo_id = ttk.Combobox(labelFrameLeft, font=("arial", 12, "bold"), width=27, state="readonly")
+        combo_id = ttk.Combobox(labelFrameLeft,textvariable=self.var_id_proof, font=("arial", 12, "bold"), width=27, state="readonly")
         combo_id["value"] = ("AdharCard", "VoterID", "DrivingLicense")
         combo_id.current(0)
         combo_id.grid(row=8, column=1)
 
         lblIdNumber = Label(labelFrameLeft, font=("arial", 12, "bold"), text="Id Number:", padx=2, pady=6)
         lblIdNumber.grid(row=9, column=0, sticky=W)
-        txtIdNumber = ttk.Entry(labelFrameLeft, font=("arial", 13, "bold"), width=29)
+        txtIdNumber = ttk.Entry(labelFrameLeft, textvariable=self.var_id_number,font=("arial", 13, "bold"), width=29)
         txtIdNumber.grid(row=9, column=1)
 
         lblAddress = Label(labelFrameLeft, font=("arial", 12, "bold"), text="Address:", padx=2, pady=6)
         lblAddress.grid(row=10, column=0, sticky=W)
-        txtAddress = ttk.Entry(labelFrameLeft, font=("arial", 13, "bold"), width=29)
+        txtAddress = ttk.Entry(labelFrameLeft,textvariable=self.var_address, font=("arial", 13, "bold"), width=29)
         txtAddress.grid(row=10, column=1)
 
         # Button Frame
         btn_frame = Frame(labelFrameLeft, bd=2, relief=RIDGE)
         btn_frame.place(x=0, y=400, width=412, height=40)
 
-        btnAdd = Button(btn_frame, text="Add", font=("arial", 12, "bold"), bg="black", fg="gold", width=8)
+        btnAdd = Button(btn_frame, text="Add",command=self.add_data, font=("arial", 12, "bold"), bg="black", fg="gold", width=8)
         btnAdd.grid(row=0, column=0, padx=1)
 
-        btnUpdate = Button(btn_frame, text="Update", font=("arial", 12, "bold"), bg="black", fg="gold", width=8)
+        btnUpdate = Button(btn_frame,command=self.update, text="Update", font=("arial", 12, "bold"), bg="black", fg="gold", width=8)
         btnUpdate.grid(row=0, column=1, padx=1)
 
-        btnDelete = Button(btn_frame, text="Delete", font=("arial", 12, "bold"), bg="black", fg="gold", width=8)
+        btnDelete = Button(btn_frame, command=self.nDelete,text="Delete", font=("arial", 12, "bold"), bg="black", fg="gold", width=8)
         btnDelete.grid(row=0, column=2, padx=1)
 
-        btnReset = Button(btn_frame, text="Reset", font=("arial", 12, "bold"), bg="black", fg="gold", width=12)
+        btnReset = Button(btn_frame, command=self.reset,text="Reset", font=("arial", 12, "bold"), bg="black", fg="gold", width=12)
         btnReset.grid(row=0, column=3, padx=1)
 
         # Table Frame
@@ -137,22 +156,26 @@ class CustomerWin:
         lblSearchBy = Label(Table_Frame, font=("arial", 12, "bold"), text="Search By:", bg="red", fg="white")
         lblSearchBy.grid(row=0, column=0, sticky=W)
 
+        self.search_var=StringVar()
+
         # Create a Combobox for Search By
         combo_search = ttk.Combobox(Table_Frame, font=("arial", 12, "bold"), width=27, state="readonly")
         combo_search["values"] = ("Mobile", "Ref No", "Name")  # Add more options as needed
         combo_search.current(0)  # Set default value
         combo_search.grid(row=0, column=1)
 
+        self.txt_search=StringVar()
+
         # Add a text entry field for search input
-        txt_search = ttk.Entry(Table_Frame, font=("arial", 13, "bold"), width=29)
+        txt_search = ttk.Entry(Table_Frame,textvariable=self.txt_search, font=("arial", 13, "bold"), width=29)
         txt_search.grid(row=0, column=2, padx=10)
 
         # Add a search button
-        btn_search = Button(Table_Frame, text="Search", font=("arial", 12, "bold"), bg="black", fg="gold", width=8)
+        btn_search = Button(Table_Frame,command=self.search, text="Search", font=("arial", 12, "bold"), bg="black", fg="gold", width=8)
         btn_search.grid(row=0, column=3, padx=10)
 
         # Add a "Show All" button
-        btn_Showall = Button(Table_Frame, text="Show All", font=("arial", 12, "bold"), bg="black", fg="gold", width=8)
+        btn_Showall = Button(Table_Frame,command=self.showall, text="Show All", font=("arial", 12, "bold"), bg="black", fg="gold", width=8)
         btn_Showall.grid(row=0, column=4)
 
         # Create a Frame for the Table
@@ -201,10 +224,122 @@ class CustomerWin:
         self.Cust_Details_Table.column("idnumber", width=150)
         self.Cust_Details_Table.column("address", width=200)
 
+        self.Cust_Details_Table.pack(fill=BOTH,expand=1)
+        self.Cust_Details_Table.bind("<ButtonRelease-1",self.get_cursor)
+        self.fetch_data()
+    
+    def add_data(self):
         
+        
+        if self.var_mobile.get()=="" or self.var_cust_mother.get()=="":
+          messagebox.showerror("Error","All fields are required")
+        else: 
+            try:
+                 conn=mysql.connector.connect(host="localhost",username="root",password="deeChu@2004",database="hotel_db") # type: ignore
+                 my_cursor=conn.cursor()
+                 my_cursor.execute("insert intp customer values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
+                                                                         self.var_ref.get(),
+                                                                         self.var_cust_name.get(),
+                                                                         self.var_cust_mother.get(),
+                                                                         self.var_gender.get(),
+                                                                         self.var_post.get(),
+                                                                         self.var_mobile.get(),
+                                                                         self.var_email.get(),
+                                                                         self.var_nationality.get(),
+                                                                         self.var_id_proof.get(),
+                                                                         self.var_id_number.get(),
+                                                                         self.var_address.get(),
+                                                                    ))
+                 conn.commit()
+                 conn.close()
+                 messagebox.showinfo("Success","cutomer has been added",parent=self.root)
+            except Exception as es:
+                 messagebox.showwarning("Warning",f"Some thing went wrong:{str(es)},parent=self.root")
 
-       
-# Main Function
+
+    def fetch_data(self):
+                 conn=mysql.connector.connect(host="localhost",username="root",password="deeChu@2004",database="hotel_db")  # type: ignore
+                 my_cursor=conn.cursor()
+                 my_cursor.execute("select * from customer")
+                 root=my_cursor.fetchall()
+                 if len(rows)!=0:  # type: ignore
+                       self.Cust_details_Table.delete(*self.Cust_Details_Table.get_children())
+                       for i in rows:  # type: ignore
+                             self.Cust_Details_Table.insert("",END,values=i)
+
+                       conn.commit()
+                 conn.close()
+
+    def get_cursor(self,event=""):
+          cursor_row=self.Cust_Details_Table.focus()
+          content=self.Cust_Details_Table.item(customer_row) # type: ignore
+          row=content["values"]
+
+          self.var_ref.set(row[0]),
+          self.var_cust_name.set(row[1]),
+          self.var_cust_mother.set(row[2]),
+          self.var_gender.set(row[3]),
+          self.var_post.set(row[4]),
+          self.var_mobile.set(row[5]),
+          self.var_email.set(row[6]),
+          self.var_nationality.set(row[7]),
+          self.var_id_proof.set(row[8]),
+          self.var_id_number.set(row[9]),
+          self.var_address.set(row[10]),  
+    def update(self):
+          if self.var_mobile.get()=="":
+                messagebox.showerror("Error","Please enter mobile number",parent=self.root)
+          else:
+                
+                conn=mysql.connector.connect(host="localhost",username="root",password="deeChu@2004",database="hotel_db")  # type: ignore
+                my_cursor=conn.cursor()
+                my_cursor.execute("update customer set Name=%s,Mother=%s,Gender=%s,PostCode=%s,Mobile=%s,Email=%s,Nationality=%sIdproof=%s,idnumber=%s,Address=%s")
+                conn.commit()
+                self.fetch_data()
+                conn.close()
+                messagebox.showinfo("Update","Customer details have been updated successfully",parent=self.root)
+
+
+          def nDelete(self):
+             nDelete=messagebox.askyesno("Hotel Management System","Do you want delete this customer",parent=self.root)
+             if nDelete>0:
+                   conn=mysql.connector.connect(host="localhost",username="root",password="Test@123",database="management") # type: ignore
+                   my_cursor=conn.cursor()
+                   query="delete from customer where Ref=%s"
+                   value=(self.var_ref.get(),)
+                   my_cursor.execute=(query,value)
+             else:
+                   if not nDelete:
+                         return
+                   conn.commit()
+                   self.fetch_data()
+                   conn.close()
+def reset(self):
+             self.var_ref.set(""),
+             self.var_cust_name.set(""),
+             self.var_cust_mother.set(""),
+             self.var_gender.set(""),
+             self.var_post.set(""),
+             self.var_mobile.set(""),
+             self.var_email.set(""),
+             self.var_nationality.set(""),
+             self.var_id_proof.set(""),
+             self.var_id_number.set(""),
+             self.var_address.set(""),
+             
+             x=random.randint(1000,10000)
+             self.var_ref.set(str(x))
+
+def search(self):
+             conn=mysql.connector.connect(host="localhost",username="root",password="deeChu@2004",database="hotel_db")  # type: ignore
+             my_cursor=conn.cursor("select*from customer where "+str(self.search_var.get())+"LIKE'%"+str(self.txt_search.get())+"%'")
+             rows=my_cursor.fetchall()
+             if len(rows)!=0:
+                   self.Cust_Details_Table.delete(*self.Cust_Detials_Table.get_children())
+                   for i in rows:
+                         self.Cust_Details_Table.insert("",END,values=i)
+                         conn.commit()
+                         conn.close()
 if __name__ == "__main__":
     root = Tk()
     app = CustomerWin(root)
