@@ -172,9 +172,8 @@ class Staff:
                 self.fetch_data()
                 conn.close()
                 messagebox.showinfo("Success", "Staff added successfully")
-                self.clear()
-            except Exception as e:
-                messagebox.showerror("Error", str(e))
+            except Exception as es:
+                messagebox.showwarning("Warning", f"Something went wrong: {str(es)}", parent=self.root)
 
     def fetch_data(self):
         try:
