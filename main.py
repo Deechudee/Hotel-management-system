@@ -1,13 +1,23 @@
 from tkinter import Tk, Label, Frame, Button, ttk
 from PIL import Image, ImageTk, ImageFilter
 from tkinter import messagebox
+import time
+import datetime
+import mysql.connector
+from hotel import HotelManagementSystem
+
+
+def main():
+    win=Tk()
+    app=Login_Window(win)
+    win.mainloop()
 
 
 class Login_Window:
     def __init__(self, root):
         self.root = root
         self.root.title("Login")
-        self.root.geometry("1750x800+0+0")
+        self.root.geometry("1650x800+0+0")
 
         # Open and blur the background image
         original_image = Image.open(r"C:\Users\deeks\OneDrive\Pictures\Saved Pictures\WhatsApp Image 2024-11-28 at 12.11.18 PM.jpeg")
@@ -56,7 +66,7 @@ class Login_Window:
     def login(self):
         if self.txtuser.get() == "" or self.txtpass.get() == "":
             messagebox.showerror("Error", "All fields are required")
-        elif self.txtuser.get() == "deechu" and self.txtpass.get() == "2004":
+        elif self.txtuser.get() == "deechu" and self.txtpass.get() == "2004": 
             messagebox.showinfo("Success", "Welcome to our Hotel")
         else:
             messagebox.showerror("Invalid", "Invalid Username & Password")

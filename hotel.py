@@ -1,7 +1,12 @@
 from tkinter import*
 from PIL import Image,ImageTk
 
+
+from customer import CustomerWin
 from room import Roombooking
+from details import DetailsRoom
+from staff import Staff
+
 
 class HotelManagementSystem:
     def __init__(self,root):
@@ -9,7 +14,7 @@ class HotelManagementSystem:
         self.root.title("Hotel Management System")
         self.root.geometry("1550x800+0+0")
 
-        img1 = Image.open(r"C:\Hotel Management System\assets\hotel1.jpg")
+        img1 = Image.open(r"C:\Hotel Management System\assets\hotel1.jpg") 
         img1 = img1.resize((1550, 140), Image.LANCZOS)
         self.photoimg1 = ImageTk.PhotoImage(img1)
 
@@ -35,19 +40,19 @@ class HotelManagementSystem:
         btn_frame=Frame(main_frame,bd=4,relief=RIDGE)
         btn_frame.place(x=0,y=35,width=228,height=190)
 
-        cust_btn=Button(btn_frame,text="CUSTOMER",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand1")
+        cust_btn=Button(btn_frame,text="CUSTOMER",command=self.customerwin,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand1")
         cust_btn.grid(row=0,column=0,pady=1)
 
         room_btn=Button(btn_frame,text="ROOM",command=self.roombooking,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
         room_btn.grid(row=1,column=0,pady=1)
 
-        details_btn=Button(btn_frame,text="DETAILS",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
+        details_btn=Button(btn_frame,text="DETAILS",command=self.details_room,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
         details_btn.grid(row=2,column=0,pady=1)
 
-        report_btn=Button(btn_frame,text="REPORT",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
+        report_btn=Button(btn_frame,text="STAFF",command=self.staff,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
         report_btn.grid(row=3,column=0,pady=1)
 
-        logout_btn=Button(btn_frame,text="LOGOUT",width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
+        logout_btn=Button(btn_frame,text="LOGOUT",command=self.logout,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
         logout_btn.grid(row=4,column=0,pady=1)
 
         img3 = Image.open(r"C:\Hotel Management System\assets\hotel1.jpg")
@@ -70,10 +75,27 @@ class HotelManagementSystem:
 
         lblimg1 = Label(main_frame, image=self.photoimg5, bd=4, relief=RIDGE)
         lblimg1.place(x=0, y=420, width=230, height=190)
+
     def roombooking(self):
         self.new_window=Toplevel(self.root)
-        self.app=Roombooking(self.new_window)    
+        self.app=Roombooking(self.new_window)
 
+    def details_room(self):
+        self.new_window=Toplevel(self.root)
+        self.app=DetailsRoom(self.new_window)  
+
+    def customerwin(self):
+        self.new_window=Toplevel(self.root)
+        self.app=CustomerWin(self.new_window)  
+
+    def staff(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Staff(self.new_window)
+
+    def logout(self):
+        self.root.destroy()      
+    
+    
 
 
 
@@ -84,4 +106,4 @@ class HotelManagementSystem:
 if __name__ == "__main__":
     root = Tk()
     obj= HotelManagementSystem(root)
-    root.mainloop()
+    root.mainloop() 
