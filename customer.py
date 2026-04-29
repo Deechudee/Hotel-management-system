@@ -296,7 +296,7 @@ class CustomerWin:
           self.var_nationality.set(row[7]),
           self.var_id_proof.set(row[8]),
           self.var_id_number.set(row[9]),
-          self.var_address.set(row[10]),  
+          self.var_address.set(row[10])
     
     def update(self):
         if self.var_cust_name.get()=="":

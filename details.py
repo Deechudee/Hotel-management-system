@@ -13,7 +13,7 @@ class DetailsRoom:
         self.root.title("Hotel Management System")
         self.root.geometry("1295x550+230+220")
         
-        lbl_title = Label(self.root, text="Room Booking Details",font=("times new roman",30,"bold"), bg="black", fg="lightblue",bd=4,relief=RIDGE)
+        lbl_title = Label(self.root, text="Room Details",font=("times new roman",30,"bold"), bg="black", fg="lightblue",bd=4,relief=RIDGE)
         lbl_title.place(x=0, y=0, width=1295, height=50)
 
         img2 = Image.open(r"C:\Hotel Management System\assets\hotel2.jpg")
@@ -183,6 +183,8 @@ class DetailsRoom:
         self.var_floor.set(""),
         self.var_roomNo.set(""),
         self.var_RoomType.set("")
+
+    
 
        
                                                                                   

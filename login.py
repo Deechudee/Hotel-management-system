@@ -8,6 +8,10 @@ import mysql.connector
 import time
 import datetime
 from hotel import HotelManagementSystem
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def main():
     win=Tk()
@@ -83,7 +87,13 @@ class Login_Window:
             messagebox.showerror("Error", "All fields are required")
             return
 
-        conn = mysql.connector.connect(host="localhost", username="root", password="deeChu@2004", database="hotel_db")
+        conn = mysql.connector.connect(
+            host=os.getenv("DB_HOST"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_NAME")
+)
+
         my_cursor = conn.cursor()
         my_cursor.execute("SELECT * FROM register WHERE username=%s AND password=%s", (
                                self.txtuser.get(),
@@ -95,7 +105,7 @@ class Login_Window:
             messagebox.showerror("Error", "Invalid Username & Password")
         else:
             # If login is successful, open the hotel management system directly
-            messagebox.showinfo("Success", "Welcome to our Hotel!")
+            messagebox.showinfo("Success", "Admin Login")
             self.new_window = Toplevel(self.root)  # Use `self.root` as the main parent window
             self.app = HotelManagementSystem(self.new_window)
 
@@ -129,7 +139,7 @@ class Register:
 
         # Open and blur the background image
         original_image = Image.open(r"C:\Hotel Management System\assets\login.jpg")
-        blurred_image = original_image.filter(ImageFilter.GaussianBlur(2))
+        blurred_image = original_image.filter(ImageFilter.GaussianBlur(3))
 
         self.bg = ImageTk.PhotoImage(blurred_image)
         bg_lbl = Label(self.root, image=self.bg)
@@ -185,12 +195,6 @@ class Register:
         self.photoimge=ImageTk.PhotoImage(img)
         b1=Button(frame,image=self.photoimge,command=self.register_data,borderwidth=0,cursor="hand2",font=("times new roman",15,"bold"),fg="white")
         b1.place(x=150,y=550,width=200)
-
-        img1=Image.open(r"C:\Hotel Management System\assets\Login3.png")
-        img1= img1.resize((100,45), Image.LANCZOS)
-        self.photoimge1=ImageTk.PhotoImage(img1)
-        b1=Button(frame,image=self.photoimge1,borderwidth=0,cursor="hand2",font=("times new roman",15,"bold"),fg="white")
-        b1.place(x=150,y=600,width=200)
 
         #### function declaration
     def register_data(self):

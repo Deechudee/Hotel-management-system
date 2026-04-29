@@ -14,14 +14,14 @@ class HotelManagementSystem:
         self.root.title("Hotel Management System")
         self.root.geometry("1550x800+0+0")
 
-        img1 = Image.open(r"C:\Hotel Management System\assets\hotel1.jpg") 
+        img1 = Image.open(r"D:\Hotel Management System\assets - Copy\hotel1.jpg") 
         img1 = img1.resize((1550, 140), Image.LANCZOS)
         self.photoimg1 = ImageTk.PhotoImage(img1)
 
         lblimg = Label(self.root, image=self.photoimg1, bd=4, relief=RIDGE)
         lblimg.place(x=0, y=0, width=1550, height=140)
 
-        img2 = Image.open(r"C:\Hotel Management System\assets\hotel2.jpg")
+        img2 = Image.open(r"D:\Hotel Management System\assets - Copy\hotel2.jpg")
         img2 = img2.resize((230, 140), Image.LANCZOS)
         self.photoimg2 = ImageTk.PhotoImage(img2)
 
@@ -55,21 +55,21 @@ class HotelManagementSystem:
         logout_btn=Button(btn_frame,text="LOGOUT",command=self.logout,width=22,font=("times new roman",14,"bold"),bg="black",fg="gold",bd=0,cursor="hand2")
         logout_btn.grid(row=4,column=0,pady=1)
 
-        img3 = Image.open(r"C:\Hotel Management System\assets\hotel1.jpg")
+        img3 = Image.open(r"D:\Hotel Management System\assets - Copy\hotel1.jpg")
         img3 = img3.resize((1310, 590), Image.LANCZOS)
         self.photoimg3 = ImageTk.PhotoImage(img3)
 
         lblimg1 = Label(main_frame, image=self.photoimg3, bd=4, relief=RIDGE)
         lblimg1.place(x=225, y=0, width=1310, height=590)
  
-        img4 = Image.open(r"C:\Hotel Management System\assets\hotel1.jpg")
+        img4 = Image.open(r"D:\Hotel Management System\assets - Copy\register1.jpg")
         img4 = img4.resize((230, 210), Image.LANCZOS)
         self.photoimg4 = ImageTk.PhotoImage(img4)
 
         lblimg1 = Label(main_frame, image=self.photoimg4, bd=4, relief=RIDGE)
         lblimg1.place(x=0, y=225, width=230, height=210)
 
-        img5= Image.open(r"C:\Hotel Management System\assets\hotel1.jpg")
+        img5= Image.open(r"D:\Hotel Management System\assets - Copy\room2.jpg")
         img5 = img5.resize((230, 190), Image.LANCZOS)
         self.photoimg5 = ImageTk.PhotoImage(img5)
 

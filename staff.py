@@ -170,11 +170,11 @@ class Staff:
                 ))
                 conn.commit()
                 self.fetch_data()
-                conn.close()
-                messagebox.showinfo("Success", "Staff added successfully")
+                
+                messagebox.showinfo("Success", "Staff added successfully",parent=self.root)
             except Exception as es:
                 messagebox.showwarning("Warning", f"Something went wrong: {str(es)}", parent=self.root)
-
+                conn.close()
     def fetch_data(self):
         try:
             conn = mysql.connector.connect(host="localhost", user="root", password="deeChu@2004", database="hotel_db")
@@ -185,10 +185,10 @@ class Staff:
                 self.staff_table.delete(*self.staff_table.get_children())
                 for row in rows:
                     self.staff_table.insert("", END, values=row)
-            conn.close()
+            
         except Exception as e:
             messagebox.showerror("Error", str(e))
-
+            conn.close()
     def get_cursor(self, event):
         cursor_row = self.staff_table.focus()
         contents = self.staff_table.item(cursor_row)
@@ -221,12 +221,12 @@ class Staff:
                 ))
                 conn.commit()
                 self.fetch_data()
-                conn.close()
-                messagebox.showinfo("Success", "Staff updated successfully")
+                
+                messagebox.showinfo("Success", "Staff updated successfully",parent=self.root)
                 self.clear()
             except Exception as e:
                 messagebox.showerror("Error", str(e))
-
+                conn.close()
     def delete_staff(self):
         if self.var_staff_id.get() == "":
             messagebox.showerror("Error", "Please select a staff member to delete")
@@ -237,12 +237,12 @@ class Staff:
                 my_cursor.execute("DELETE FROM staff WHERE id=%s", (self.var_staff_id.get(),))
                 conn.commit()
                 self.fetch_data()
-                conn.close()
-                messagebox.showinfo("Success", "Staff deleted successfully")
+                
+                messagebox.showinfo("Success", "Staff deleted successfully",parent=self.root)
                 self.clear()
             except Exception as e:
                 messagebox.showerror("Error", str(e))
-
+                conn.close()
     def clear(self):
         self.var_staff_id.set("")
         self.var_staff_name.set("")
