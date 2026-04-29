@@ -1,6 +1,8 @@
 from tkinter import Checkbutton, IntVar, StringVar, Tk, Frame, Label, Button, messagebox, ttk
 from PIL import Image, ImageTk, ImageFilter
 import mysql.connector
+import os
+
 
 
 
@@ -95,7 +97,12 @@ class Register:
             elif self.var_check.get()==0: 
                  messagebox.showerror("Error","Please agree our terms and condition")
             else:
-                conn=mysql.connector.connect(host="localhost",username="root",password="deeChu@2004",database="hotel_db")
+                conn = mysql.connector.connect(
+                    host=os.getenv("DB_HOST"),
+                    user=os.getenv("DB_USER"),
+                    password=os.getenv("DB_PASSWORD"),
+                    database=os.getenv("DB_NAME")
+)
                 my_cursor=conn.cursor()
                 query=("select *from register where email=%s")
                 value=(self.var_email.get(),)

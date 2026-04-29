@@ -1,14 +1,14 @@
+import os
 import mysql.connector
 import hashlib
 
 def get_connection():
-    """Returns a connection to the MySQL database."""
     connection = mysql.connector.connect(
-        host="localhost",  # your MySQL server address
-        user="root",       # your MySQL username
-        password="deeChu@2004",  # your MySQL password
-        database="hotel_db"  # the database you want to connect to
-    )
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME")
+)
     return connection
 
 # Function to check if the email exists

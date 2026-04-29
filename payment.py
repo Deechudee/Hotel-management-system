@@ -41,8 +41,7 @@ class PaymentWindow:
             messagebox.showerror("Error", str(e))
             return
 
-        # Here you would typically integrate with a payment gateway
-        # For demonstration, we will just show a success message
+       
         messagebox.showinfo("Success", f"Payment of ${amount:.2f} processed successfully!")
 
 if __name__ == "__main__":

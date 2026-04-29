@@ -3,6 +3,10 @@ from tkinter import *
 from tkinter import messagebox, ttk
 from tkinter import *
 from PIL import Image, ImageTk
+from hotel import HotelManagementSystem
+import os
+from dotenv import load_dotenv
+
 
 
 class Staff:
@@ -156,7 +160,12 @@ class Staff:
             messagebox.showerror("Error", "All fields are required")
         else:
             try:
-                conn = mysql.connector.connect(host="localhost", user="root", password="deeChu@2004", database="hotel_db")
+                conn = mysql.connector.connect(
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
+)
                 my_cursor = conn.cursor()
                 my_cursor.execute("INSERT INTO staff (id, name, contact, position, shift, department, salary, gender) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (
                     self.var_staff_id.get(),
@@ -177,7 +186,12 @@ class Staff:
                 conn.close()
     def fetch_data(self):
         try:
-            conn = mysql.connector.connect(host="localhost", user="root", password="deeChu@2004", database="hotel_db")
+            conn = mysql.connector.connect(
+                host=os.getenv("DB_HOST"),
+                user=os.getenv("DB_USER"),
+                password=os.getenv("DB_PASSWORD"),
+                database=os.getenv("DB_NAME")
+            )
             my_cursor = conn.cursor()
             my_cursor.execute("SELECT * FROM staff")
             rows = my_cursor.fetchall()
